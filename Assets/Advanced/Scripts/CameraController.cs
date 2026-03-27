@@ -13,6 +13,11 @@ public class CameraController : MonoBehaviour
 
     private void LateUpdate()
     {
+        MoveCameraAfterTarget();
+    }
+
+    private void MoveCameraAfterTarget()
+    {
         transform.position = _offset + _playerTransform.position;
     }
 }

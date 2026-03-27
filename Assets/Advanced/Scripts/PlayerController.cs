@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 _inputVector;
 
     public event Action<int> ScoreHasChanged;
+    public event Action PlayerCatched;
 
     private void OnMove(InputValue inputValue)
     {
@@ -21,10 +22,29 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        MovePlayer();
+    }
+
+    private void MovePlayer()
+    {
         _rb.AddForce(_inputVector * _moveSpeed);
     }
 
     private void OnTriggerEnter(Collider other)
+    {
+        CheckIfCollectable(other);
+        CheckIfEnemy(other);
+    }
+
+    private void CheckIfEnemy(Collider other)
+    {
+        if (other.TryGetComponent(out EnemyController enemy))
+        {
+            PlayerCatched?.Invoke();
+        }
+    }
+
+    private void CheckIfCollectable(Collider other)
     {
         if (other.TryGetComponent(out CollectableController collectable))
         {
