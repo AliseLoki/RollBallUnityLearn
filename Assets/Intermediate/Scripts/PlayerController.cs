@@ -7,11 +7,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _moveSpeed;
     [SerializeField] private Rigidbody _rb;
 
-    private int _score;
-
     private Vector3 _inputVector;
 
-    public event Action<int> ScoreHasChanged;
+    public event Action CollectablePicked;
     public event Action PlayerCatched;
 
     private void OnMove(InputValue inputValue)
@@ -49,8 +47,7 @@ public class PlayerController : MonoBehaviour
         if (other.TryGetComponent(out CollectableController collectable))
         {
             other.gameObject.SetActive(false);
-            _score++;
-            ScoreHasChanged?.Invoke(_score);
+            CollectablePicked?.Invoke();
         }
     }
 }

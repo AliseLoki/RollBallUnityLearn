@@ -148,11 +148,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 946f90e4d35cb634dad638017ef20a21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  _level: {fileID: 1186946252}
   _player: {fileID: 1958317135}
   _ui: {fileID: 109244175}
-  _collectableController: {fileID: 1212585569147708512, guid: fa0158fee9477d34da077c19aa4c62f8, type: 3}
-  _collectablesParent: {fileID: 605744327}
   _camera: {fileID: 1558911398}
   _enemy: {fileID: 496903041}
 --- !u!4 &44970218
@@ -1066,7 +1063,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.1
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 95c72bb4ce85ad24b976576bbb35dc6f, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: a8b41c344dbc3214b905e6119f2677b3, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1 &605744326
 GameObject:

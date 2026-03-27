@@ -1,27 +1,24 @@
-using System;
 using UnityEngine;
 
 public class EntryPoint : MonoBehaviour
 {
     private const int WinScore = 5;
+    private int _score;
 
-    [SerializeField] private GameObject _level;
     [SerializeField] private PlayerController _player;
     [SerializeField] private UIController _ui;
-    [SerializeField] private CollectableController _collectableController;
-    [SerializeField] private Transform _collectablesParent;
     [SerializeField] private CameraController _camera;
     [SerializeField] private EnemyController _enemy;
 
     private void OnEnable()
     {
-        _player.ScoreHasChanged += OnScoreHasChanged;
+        _player.CollectablePicked += OnCollectablePicked;
         _player.PlayerCatched += OnPlayerHasBeenCatched;
     }
 
     private void OnDisable()
     {
-        _player.ScoreHasChanged -= OnScoreHasChanged;
+        _player.CollectablePicked -= OnCollectablePicked;
         _player.PlayerCatched -= OnPlayerHasBeenCatched;
     }
 
@@ -37,10 +34,16 @@ public class EntryPoint : MonoBehaviour
         StopGame();
     }
 
-    private void OnScoreHasChanged(int score)
+    private void OnCollectablePicked()
     {
-        _ui.UpdateText(score);
-        CheckIfEnoughScoreForWin(score);
+        AddScore();
+        _ui.UpdateText(_score);
+        CheckIfEnoughScoreForWin(_score);
+    }
+
+    private void AddScore()
+    {
+        _score++;
     }
 
     private void CheckIfEnoughScoreForWin(int score)
